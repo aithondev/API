@@ -1,4 +1,6 @@
-API
+## API
+
+Utility API for (my) Minecraft Plugins 
 
 ```groovy
 repositories {
