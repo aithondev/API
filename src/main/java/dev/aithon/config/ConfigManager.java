@@ -1,20 +1,27 @@
 package dev.aithon.config;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.IOException;
 
 public class ConfigManager {
 
-    public static  <T> T parse(Class <T> o, String path, String fileName) throws IOException {
-        File file = new File(fileName);
+    private YamlConfiguration yamlConfiguration;
+    private File file;
+
+
+    public ConfigManager config(String fileName, Plugin plugin){
+        this.file = new File(fileName);
+        this.yamlConfiguration = YamlConfiguration.loadConfiguration(file);
         if(!file.exists()){
-            if(!file.createNewFile()){
-                System.out.println("e");
-            }
+            plugin.saveResource(fileName, false);
         }
-        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-        return o.cast(config.get(path));
+        return this;
+    }
+
+    public <T> T parse(Class <T> o, String path) {
+        return o.cast(yamlConfiguration.get(path));
     }
 }
