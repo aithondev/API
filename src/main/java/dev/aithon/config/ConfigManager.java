@@ -14,10 +14,10 @@ public class ConfigManager {
 
     public ConfigManager(String fileName, Plugin plugin){
         this.file = new File(fileName);
-        this.yamlConfiguration = YamlConfiguration.loadConfiguration(file);
         if(!file.exists()){
             plugin.saveResource(fileName, false);
         }
+        this.yamlConfiguration = YamlConfiguration.loadConfiguration(file);
     }
 
     public <T> T parse(Class <T> o, String path) {
