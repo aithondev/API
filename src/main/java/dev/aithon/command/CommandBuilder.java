@@ -32,7 +32,7 @@ public class CommandBuilder {
         this.name = name;
     }
 
-    public static CommandBuilder cmd(JavaPlugin plugin, String name) {
+    public static CommandBuilder cmd(String name) {
         return new CommandBuilder(name);
     }
 
